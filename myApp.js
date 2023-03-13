@@ -1,5 +1,6 @@
 let express = require('express');
 let app = express();
+require('dotenv').config()
 
 
 //Servir un archivo
@@ -15,7 +16,11 @@ app.use('/public',express.static(absolutePath2))
 
 //Crear API para servir JSON
 app.get('/json', (req,res) => {
-    res.json({"message": "Hello json"});
+if(process.env.MESSAGE_STYLE === "uppercase"){
+   res.json({"message": "HELLO JSON"})
+}else{
+  res.json({"message": "Hello json"})
+}
   })
   
 
