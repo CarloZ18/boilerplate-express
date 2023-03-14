@@ -19,14 +19,6 @@ app.get("/", (req, res) => {
 let absolutePath2 = __dirname + "/public";
 app.use("/public", express.static(absolutePath2));
 
-//Crear API para servir JSON
-app.get("/json", (req, res) => {
-  res.json({
-    message:
-      process.env.MESSAGE_STYLE === "uppercase" ? "HELLO JSON" : "Hello json",
-  });
-});
-
 //Encadenar middleware
 app.get(
   "/now",
@@ -38,5 +30,15 @@ app.get(
     res.send({ time: req.time });
   }
 );
+
+//Crear API para servir JSON
+app.get("/json", (req, res) => {
+  res.json({
+    message:
+      process.env.MESSAGE_STYLE === "uppercase" ? "HELLO JSON" : "Hello json",
+  });
+});
+
+
 
 module.exports = app;
