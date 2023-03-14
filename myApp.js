@@ -9,7 +9,8 @@ app.get(
     next();
   },
   function (req, res) {
-    res.json({time: req.time});
+    res.send({ time: req.time });
+    next();
   }
 );
 
@@ -35,7 +36,5 @@ app.get("/json", (req, res) => {
       process.env.MESSAGE_STYLE === "uppercase" ? "HELLO JSON" : "Hello json",
   });
 });
-
-
 
 module.exports = app;
