@@ -5,8 +5,6 @@ let app = express();
 //Montar función middleware
 app.use("/", function (req, res, next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
-  req.path;
-  req.ip;
   next();
 });
 //Servir un archivo
