@@ -2,6 +2,13 @@ let express = require("express");
 require("dotenv").config();
 let app = express();
 
+//Montar función middleware
+app.use("/", function (req, res, next) {
+  console.log("GET / - ::ffff:127.0.0.1");
+  req.path;
+  req.ip;
+  next();
+});
 //Servir un archivo
 let absolutePath1 = __dirname + "/views/index.html";
 app.get("/", (req, res) => {
