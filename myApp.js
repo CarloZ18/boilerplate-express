@@ -2,15 +2,15 @@ let express = require("express");
 require("dotenv").config();
 let app = express();
 
+//Encadenar middleware
 app.get(
   "/now",
-  function (req, res, next) {
+  (req, res, next) => {
     req.time = new Date().toString();
     next();
   },
-  function (req, res) {
+  (req, res) => {
     res.send({ time: req.time });
-    next();
   }
 );
 
@@ -19,6 +19,7 @@ app.use("/", function (req, res, next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
   next();
 });
+
 //Servir un archivo
 let absolutePath1 = __dirname + "/views/index.html";
 app.get("/", (req, res) => {
