@@ -2,17 +2,6 @@ let express = require("express");
 require("dotenv").config();
 let app = express();
 
-//Encadenar middleware
-const middleware = (req, res, next) => {
-  req.time = new Date().toString();
-  next();
-};
-
-app.get("/now", middleware, (req, res) => {
-  res.send({
-    time: req.time
-  });
-});
 
 //Montar función middleware
 app.use("/", function (req, res, next) {
@@ -37,5 +26,17 @@ app.get("/json", (req, res) => {
       process.env.MESSAGE_STYLE === "uppercase" ? "HELLO JSON" : "Hello json",
   });
 });
+
+//Encadenar middleware
+app.get(
+  "/now",
+  function (req, res, next) {
+    req.time = new Date().toString();
+    next();
+  },
+  function (req, res) {
+    res.send({ time: req.time });
+  }
+);
 
 module.exports = app;
