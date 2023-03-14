@@ -2,7 +2,6 @@ let express = require("express");
 require("dotenv").config();
 let app = express();
 
-
 //Montar función middleware
 app.use("/", function (req, res, next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
@@ -17,10 +16,9 @@ app.get(
     next();
   },
   function (req, res) {
-    res.send({ time: req.time });
+   return res.send({ time: req.time });
   }
 );
-
 
 //Servir un archivo
 let absolutePath1 = __dirname + "/views/index.html";
@@ -39,7 +37,5 @@ app.get("/json", (req, res) => {
       process.env.MESSAGE_STYLE === "uppercase" ? "HELLO JSON" : "Hello json",
   });
 });
-
-
 
 module.exports = app;
