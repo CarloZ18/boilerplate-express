@@ -2,6 +2,17 @@ let express = require("express");
 require("dotenv").config();
 let app = express();
 
+app.get(
+  "/now",
+  function (req, res, next) {
+    req.time = new Date().toString();
+    next();
+  },
+  function (req, res) {
+    res.json({time: req.time});
+  }
+);
+
 //Montar función middleware
 app.use("/", function (req, res, next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
