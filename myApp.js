@@ -4,7 +4,7 @@ let app = express();
 
 //Montar función middleware
 app.use("/", function (req, res, next) {
-  console.log("GET / - ::ffff:127.0.0.1");
+  console.log(`${req.method} ${req.path} - ${req.ip}`);
   req.path;
   req.ip;
   next();
