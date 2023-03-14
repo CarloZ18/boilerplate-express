@@ -3,16 +3,16 @@ require("dotenv").config();
 let app = express();
 
 //Encadenar middleware
-app.get(
-  "/now",
-  (req, res, next) => {
-    req.time = new Date().toString();
-    next();
-  },
-  (req, res) => {
-    res.send({ time: req.time });
-  }
-);
+const middleware = (req, res, next) => {
+  req.time = new Date().toString();
+  next();
+};
+
+app.get("/now", middleware, (req, res) => {
+  res.send({
+    time: req.time
+  });
+});
 
 //Montar función middleware
 app.use("/", function (req, res, next) {
