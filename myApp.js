@@ -16,7 +16,7 @@ app.get(
     next();
   },
   function (req, res) {
-   return res.send({ time: req.time });
+    res.send({ time: req.time });
   }
 );
 
@@ -36,6 +36,10 @@ app.get("/json", (req, res) => {
     message:
       process.env.MESSAGE_STYLE === "uppercase" ? "HELLO JSON" : "Hello json",
   });
+});
+
+app.get("/:word/echo", (req, res) => {
+  res.json({echo:req.params.word});
 });
 
 module.exports = app;
