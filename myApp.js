@@ -44,7 +44,7 @@ app.get("/:word/echo", (req, res) => {
 
 app.route("/name?first=firstname&last=lastname").get((req,res)=>{
 res.json({
-  name:req.query
+  name:`${req.query.first} ${req.query.last}`
 })
 })
 
