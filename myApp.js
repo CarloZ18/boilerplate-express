@@ -3,8 +3,9 @@ require("dotenv").config();
 let app = express();
 let bodyParser=require("body-parser")
 
-app.use("/",()=>{
-  bodyParser.urlencoded({extended: false}).
+//Usar body-parser para analizar solicitudes 
+app.use("/",(req,res,next)=>{
+  bodyParser.urlencoded({extended: false});
   next();
 })
 
