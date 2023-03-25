@@ -39,14 +39,14 @@ app.get("/json", (req, res) => {
 });
 
 app.get("/:word/echo", (req, res) => {
-  res.json({echo:req.params.word});
+  res.json({ echo: req.params.word });
 });
 
-app.route("/name").get((req,res)=>{
-let {first:firstName,last:lastName}=req.query;
-res.json({
-  name:`${firstName} ${lastName}`
-})
-})
+//Obtener la entrada de parámetros de consulta del cliente
+app.get("/name", (req, res) => {
+  res.json({
+    name: `${req.query.first} ${req.query.last}`,
+  });
+});
 
 module.exports = app;
