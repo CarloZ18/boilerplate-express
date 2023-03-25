@@ -2,7 +2,7 @@ let express = require("express");
 require("dotenv").config();
 let app = express();
 
-/*//Montar función middleware
+//Montar función middleware
 app.use("/", function (req, res, next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
   next();
@@ -40,7 +40,7 @@ app.get("/json", (req, res) => {
 
 app.get("/:word/echo", (req, res) => {
   res.json({ echo: req.params.word });
-});*/
+});
 
 app.get("/name", (req, res) => {
   let { first: firstName, last: lastName } = req.query;
