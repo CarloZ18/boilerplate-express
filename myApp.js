@@ -3,8 +3,10 @@ require("dotenv").config();
 let app = express();
 let bodyParser=require("body-parser")
 
-// Usar body-parser para analizar solicitudes POST
-app.use(bodyParser.urlencoded({extended: false}))
+app.use("/",()=>{
+  bodyParser.urlencoded({extended: false}).
+  next();
+})
 
 //Montar función middleware
 app.use("/", function (req, res, next) {
