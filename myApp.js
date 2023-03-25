@@ -4,10 +4,7 @@ let app = express();
 let bodyParser=require("body-parser")
 
 //Usar body-parser para analizar solicitudes 
-app.use("/",(req,res,next)=>{
-  bodyParser.urlencoded({extended: false});
-  next();
-})
+app.use(bodyParser.urlencoded({extended: false}));
 
 //Montar función middleware
 app.use("/", function (req, res, next) {
