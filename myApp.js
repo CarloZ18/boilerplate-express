@@ -1,6 +1,10 @@
 let express = require("express");
 require("dotenv").config();
 let app = express();
+let bodyParser=require("body-parser")
+
+// Usar body-parser para analizar solicitudes POST
+app.use(bodyParser.urlencoded({extended: false}))
 
 //Montar función middleware
 app.use("/", function (req, res, next) {
@@ -39,14 +43,16 @@ app.get("/json", (req, res) => {
 });
 
 app.get("/:word/echo", (req, res) => {
-  res.json({ echo: req.params.word });
+  res.json({echo:req.params.word});
 });
 
 //Obtener la entrada de parámetros de consulta del cliente
-app.get("/name", (req, res) => {
-  res.json({
-    name: `${req.query.first} ${req.query.last}`,
-  });
-});
+app.route("/name").get((req,res)=>{
+res.json({
+  name:`${req.query.first} ${req.query.last}`
+})
+}).post((req,res)=>{
+
+})
 
 module.exports = app;
